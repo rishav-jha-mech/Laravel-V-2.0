@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+{{post.blogtitle}}
+
+{% endblock title %}
+
+<style>
+
+</style>
+
+{% block style %}
+@media(max-width:900px){
+    .outer{
+        margin: 0 0 0 0 !important;
+    }
+}
+.outer{
+    margin: 0 25% 0 15%;
+}
+
+.container{
+    min-height:100vh;
+}
+.container img{
+    display:block;
+    width:100%;
+    max-height: 600px;
+}
+#author,#date{
+    min-width: 125px;
+}
+#author{
+margin-right:30px;
+}
+h1{
+    font-family: 'Poppins', sans-serif;
+}
+h5{
+    color: #999;
+}
+.info{
+    display:flex;
+}
+@media(max-width:420px){
+.container .info{
+    display:block;
+}
+}
+{% endblock style %}
+
+{% block body %}
+<!--BLOG SECTION-->
+
+<div class="outer">   
+
+<div class="container mx-6">
+      <h1 class="mt-5">{{post.blogtitle}}</h1>
+      <h5 class="mb-3">{{post.blogsubtitle}}</h5>
+        <div class="info"> 
+        <p id="author">
+        <strong style="color: #ff156f;"> Author: </strong> <strong>{{post.name}} </strong>
+        </p> 
+        <p id="date">
+        <strong style="color: #ff156f;">Last-Updated:</strong> <strong> {{post.pub_date}}</strong>
+        </p> 
+        </div>
+      <img style="height: 50vh;" class="mb-3" src="{{post.thumbnail.url}}" >
+      <div class="content mr-5 mb-5">
+         {{post.blogcontent}}
+      </div>
+</div>
+
+</div>
+
+<!--BLOG SECTION-->
+
+{% endblock body %}

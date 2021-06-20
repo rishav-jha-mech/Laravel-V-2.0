@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block link %}
+
+<!--JUST because I DIDNT WANT TO IMPORT TAILWIND CSS EVERYTIME(BECAUSE ITS USED ONLY OVER HERE) I MADE THIS BLOCK GUESS WHAT 3000IQ-->
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+{% endblock link %}
+
+
+
+{% block title %}Home{% endblock title %}
+{% block style %}
+/*APNI MARZI KA STYLE KAHI SE BHI ISME DAAL LO*/
+.carousel-caption h5, .carousel-caption p{
+    color: white;
+}
+.carousel-item img{
+  height: 550px;
+}
+@media (max-width:800px){
+  .carousel-item h5,.carousel-item p{
+    display:block !important;
+  }
+}
+/*PGE 2 CSS*/
+.pg2{
+  text-align:center;
+}
+.contents{
+  min-height:75vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+#texts{
+  float:left;
+  text-align:left;
+}
+.post img{
+    box-shadow: 0 0 15px 1px rgba(0,0,0,0.1),
+                0 0 15px 1px rgba(0,0,0,0.1),
+                0 0 15px 1px rgba(0,0,0,0.1),
+                0 0 15px 1px rgba(0,0,0,0.1);
+}
+.title{
+  position: relative;
+  top: -300px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  display: none;
+}
+@media(max-width:600px){
+  .title{
+    display: block;
+  }
+}
+.alert{
+background-color: #9eabe4;
+background-image: linear-gradient(315deg, #9eabe4 0%, #77eed8 74%);
+margin: 0 !important;
+}
+{% endblock style %}
+
+{% block loadfunctions %}
+{% endblock loadfunctions %}
+
+
+{% block ahome %}active{% endblock ahome%}
+
+
+
+{% block body %}
+
+
+
+<!--REAL CAROUSEL-->
+{% if user.is_authenticated %} 
+
+
+<!--alert-->
+{% include 'messages.html' %}
+<!--alert-->
+
+<section style="min-height: 100vh;" class="text-gray-600 body-font">
+  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 post">
+      <img class="object-cover object-center rounded" alt="hero" src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" >
+    </div>
+    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Welcome To Laravel
+      </h1>
+      <p id="texts" class="mb-3 leading-relaxed"> Some Instructions:
+      <br>
+      1. Dont try to find the admin page.
+      <br>
+      2. You can only add one pargraph for a blog.
+      <br>
+      3. Try to use a username that matches your real name.
+      <br>
+      4. Dont click on WhatsApp icon in <strong>  <a style="text-decoration:none;" href="{% url 'about'%}"> about </a></strong>  page.
+      <br>
+      5. Upload 16:9 images for your blog.
+      <br>
+      6. Dont forget to check out the <br>  <strong>  <a href="/tempo" style="text-decoration:none;" target="_blank"> ERROR_404 Not Found Page.</a> </strong>
+      </p>
+      <div class="flex justify-center">
+    
+       <a style="text-decoration:none;" href="{% url 'blogpost' %}">   <button  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"> Blog Page</button>      </a>
+       <a style="text-decoration:none;" href="{% url 'writeablog' %}"> <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Write A Blog</button>  </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+
+{% include 'messages.html' %}
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h4>Home Page</h4>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, quidem.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1522124624696-7ea32eb9592c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h4>To Write A Blog You Have To Sign In First </h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quisquam laborum a. </p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=787&q=80" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h4>Also Checkout About and Contact Us pages.</h4>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex, error.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="title">
+<h1 style="font-size: 35px;">Welcome To Laravel ! </h1>
+</div>
+<!--REAL CAROUSEL-->
+<!--PAGE 2 FOR NO GOOD REASON just because i am fucking bored i am gonna usee TAILWIND-->
+
+<!--TAILBLOCKS CONTENT-->
+<section style="min-height:600px; overflow:hidden;" class="text-gray-600 body-font">
+  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 post">
+      <img class="object-cover object-center rounded" alt="hero" src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" >
+    </div>
+    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Welcome To Laravel
+      </h1>
+      <p id="texts" class="mb-3 leading-relaxed"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur repellat inventore eius aliquid atque illo quo possimus modi cumque illum, voluptas iusto tempore dolores minus, accusantium neque esse dolorum molestias cum minima. A quo ea in, delectus provident repudiandae voluptas eum soluta asperiores repellat nam voluptate magnam maxime eius ut!
+      </p>
+      <p id="texts" class="mb-3 leading-relaxed">Wanna write a blog , Well Sign In FIrst.
+      </p>
+      <p id="texts" class="mb-8 leading-relaxed">New to Laravel no worries, sign up now for free.
+      </p>
+      <div class="flex justify-center">
+    
+       <a style="text-decoration:none;" href="{% url 'login' %}">  <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign In</button>      </a>
+       <a style="text-decoration:none;" href="{% url 'signup' %}"> <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Sign Up</button>  </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!--TAILBLOCKS CONTENT-->
+
+<!--PAGE 2 FOR NO GOOD REASON just because i am fucking bored i am gonna usee TAILWIND-->
+{% endif %}
+{% endblock body %}

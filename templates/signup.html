@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block upbuttkastyle %} color: #fff;background-color: #dc3545;{% endblock upbuttkastyle %} 
+{% block style %}
+.card1 {
+    min-height:100vh !important;
+    width:auto !important;
+    background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=753&q=80');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+.center{
+    background: rgb(255,255,255);
+    padding: 25px;
+    min-width:auto;
+    box-shadow:0 0 10px 0px rgb(0,0,0,0.05),
+               0 0 10px 5px rgb(0,0,0,0.05),
+               0 0 10px 0px rgb(0,0,0,0.05),
+               0 0 10px 5px rgb(0,0,0,0.05),
+               0 0 10px 0px rgb(0,0,0,0.05);
+    border-radius: 6px;
+    transition:0.3s;
+}
+.center:hover{
+    box-shadow:0 0 10px 0px rgb(0,0,0,0.1),
+               0 0 10px 5px rgb(0,0,0,0.1),
+               0 0 10px 0px rgb(0,0,0,0.1),
+               0 0 10px 5px rgb(0,0,0,0.1),
+               0 0 10px 0px rgb(0,0,0,0.1);
+    transition:0.3s;
+    
+}
+.card-title{
+    font-size: 30px;
+}
+@media (max-width:600px){
+    .center{
+        background-color: rgb(255,255,255,0.1);
+    box-shadow:0 0 10px 0px rgb(0,0,0,0.15),
+               0 0 10px 5px rgb(0,0,0,0.15),
+               0 0 10px 0px rgb(0,0,0,0.15),
+               0 0 10px 5px rgb(0,0,0,0.15),
+               0 0 10px 0px rgb(0,0,0,0.15);
+    border-radius: 8px;  
+    margin-left:  10px;
+    margin-right: 10px;
+    }
+    .center:hover{
+    box-shadow:0 0 10px 0px rgb(0,0,0,0.18),
+               0 0 10px 5px rgb(0,0,0,0.18),
+               0 0 10px 0px rgb(0,0,0,0.18),
+               0 0 10px 5px rgb(0,0,0,0.18),
+               0 0 10px 0px rgb(0,0,0,0.18);
+    transition:0.3s;
+    border-radius: 8px;
+    }
+}
+.row input{
+    outline: none; 
+}
+{% endblock style %}
+
+{% block body %}
+
+<!--alert-->
+{% include 'messages.html' %}
+<!--alert-->
+
+<div class="card1 py-5">
+  <div class="center">    
+  <h1 class="py-2 pb-3">Sign up</h1>
+  <form action="signup" method="post">
+    {% csrf_token %}
+    <div class="row py-2 mx-3 x">
+        <h5>Enter First Name :</h5>
+            <input class="py-2" type="text" name="fname" placeholder="Enter First Name" required />
+    </div>
+    <div class="row py-2 mx-3">
+            <h5>Enter Last Name :</h5>
+            <input class="py-2" type="text" name="lname" placeholder="Enter Last Name" required />
+    </div>
+    <div class="row py-2 mx-3">
+        <h5>Enter E-Mail Address :</h5>
+        <input class="py-2" type="email" name="email" placeholder="Enter E-Mail Address" required />
+    </div>
+
+    <div class="row py-2 mx-3">
+        <h5>Enter Username</h5>
+        <input class="py-2" type="text" name="username" placeholder="Enter Username" required />
+    </div>
+
+    <div class="row py-2 mx-3">
+        <h5>Enter Password</h5>
+        <input class="py-2" type="password" name="pass1" placeholder="Enter Password" required />
+    </div>
+
+    <div class="row py-2 mx-3">
+        <h5>Confirm Password</h5>
+        <input class="py-2" type="password" name="pass2" placeholder="Enter The Same Password Again " required />
+    </div>
+
+    <button class="btn btn-primary mx-3 mt-3" type="submit">Sign Up</button>
+  </form>
+  </div>
+</div>
+
+{% endblock body %}
+{% block script %}
+function tell(){
+alert('Your Usernameshould be of Format Firstname_Lastname');
+}
+{% endblock script %}

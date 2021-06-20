@@ -1,0 +1,12 @@
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }}  d-flex align-items-center my-0" role="alert">
+  <i class="fas"></i>
+  <div class=" ">
+    <strong>
+      {{ message }} 
+    </strong>
+  </div>
+</div>
+</div>
+{% endfor %}
